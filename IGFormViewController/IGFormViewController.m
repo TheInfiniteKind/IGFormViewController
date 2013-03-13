@@ -239,7 +239,7 @@
 		} else if([element isKindOfClass:[IGFormRadioOption class]]) {
 			IGFormRadioOption *radioOption = (IGFormRadioOption *)element;
 			
-			if(radioOption.value) {
+			if(radioOption.selected) {
 				[formData setObject:radioOption.value forKey:radioOption.key];
 			}
 		} else if([element isKindOfClass:[IGFormTextView class]]) {

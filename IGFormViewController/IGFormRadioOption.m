@@ -23,4 +23,8 @@
     
 }
 
+- (NSString *)description {
+    return [[super description] stringByAppendingFormat:@" - title: %@, value: %@, key: %@", self.title, self.value, self.key];
+}
+
 @end
