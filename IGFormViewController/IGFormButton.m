@@ -11,8 +11,8 @@
 @implementation IGFormButton
 @synthesize action;
 
--(id)initWithTitle:(NSString *)aTitle detailTitle:(NSString*)aDetailTitle action:(void(^)(void))anAction {
-    self = [super initWithTitle:aTitle forKey:@""];
+-(id)initWithTitle:(NSString *)aTitle forKey:(NSString *)key detailTitle:(NSString*)aDetailTitle action:(void(^)(void))anAction {
+    self = [super initWithTitle:aTitle forKey:key];
     if(self) {
         self.action = anAction;
 		self.detailTitle = aDetailTitle;

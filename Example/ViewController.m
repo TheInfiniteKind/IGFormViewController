@@ -16,10 +16,12 @@
 
     [self addSectionWithTitle:@"Buttons" footer:@"The first button does nothing"];
     [self addButton:@"This does nothing"
+             forKey:@"button"
         detailTitle:nil
                type:IGFormButtonTypeDisclosure
              action:nil];
     [self addButton:@"Do something"
+             forKey:@"button"
         detailTitle:nil
                type:IGFormButtonTypeNormal
              action:^{
@@ -45,6 +47,7 @@
     
     __weak ViewController *weakSelf = self;
     [self addButton:@"Log Data"
+             forKey:@"button"     
         detailTitle:@"To Console"
                type:IGFormButtonTypeNormal
              action:^{

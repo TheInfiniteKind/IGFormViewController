@@ -28,6 +28,9 @@ typedef enum _IGFormButtonType {
 // return the current values
 -(NSDictionary *)formData;
 
+// return elements matching key
+- (NSArray *)elementsForKey:(NSString *)key;
+
 // Subclasses should override this method to determine whether the data is valid.
 // If valid, return nil. If not, return an error message.
 -(NSString *)validateData:(NSDictionary *)formData;
@@ -51,6 +54,6 @@ typedef enum _IGFormButtonType {
 -(void)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled;
 
 // Adds a button that executes the given block when pressed
--(void)addButton:(NSString *)title detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action;
+-(void)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action;
 
 @end

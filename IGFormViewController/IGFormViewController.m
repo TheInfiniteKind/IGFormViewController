@@ -142,6 +142,17 @@
 	// nop; should be overriden
 }
 
+- (NSArray *)elementsForKey:(NSString *)key {
+    NSMutableArray *matchedElements = [NSMutableArray arrayWithCapacity:[elements count]];
+    
+    for (IGFormElement *element in elements) {
+        if ([element.key isEqual:key])
+            [matchedElements addObject:key];
+    }
+    
+    return matchedElements;
+}
+
 #pragma mark -
 #pragma mark Sections
 
@@ -205,10 +216,11 @@
     [elements addObject:formSwitch];
 }
 
--(void)addButton:(NSString *)title detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action {
+-(void)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action {
     [self addDefaultSectionIfNeeded];
     
     IGFormButton *button = [[IGFormButton alloc] initWithTitle:title
+                                                        forKey:@"button"
                                                    detailTitle:detailTitle
                                                         action:action];
     button.type = type;
