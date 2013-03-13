@@ -284,7 +284,7 @@
 		[[popoverControllerClass performSelector:@selector(currentPopoverController)] dismissPopoverAnimated:YES];
 	} else {
         if(![self.navigationController popViewControllerAnimated:YES])
-            [self dismissModalViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:NULL];
 	}
 }
 
@@ -401,7 +401,7 @@
     // set default cell attributes to be overriden based on the element below
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = @"";
-    cell.textLabel.textAlignment = UITextAlignmentLeft;
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.accessoryView = nil;    
 	
@@ -438,7 +438,7 @@
         if(formButton.type == IGFormButtonTypeDisclosure)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         else
-            cell.textLabel.textAlignment = UITextAlignmentCenter;
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
     
     return cell;
