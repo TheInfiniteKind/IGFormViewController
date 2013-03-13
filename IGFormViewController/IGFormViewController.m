@@ -81,27 +81,6 @@
 	}
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-
 #pragma mark -
 #pragma mark Popover support
 
@@ -140,7 +119,7 @@
     
     for (IGFormElement *element in elements) {
         if ([element.key isEqual:key])
-            [matchedElements addObject:key];
+            [matchedElements addObject:element];
     }
     
     return matchedElements;
@@ -213,7 +192,7 @@
     [self addDefaultSectionIfNeeded];
     
     IGFormButton *button = [[IGFormButton alloc] initWithTitle:title
-                                                        forKey:@"button"
+                                                        forKey:key
                                                    detailTitle:detailTitle
                                                         action:action];
     button.type = type;
