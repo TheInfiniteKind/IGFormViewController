@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef enum _IGFormButtonType {
-    IGFormButtonTypeNormal,
-    IGFormButtonTypeDisclosure
-} IGFormButtonType;
+#import "IGFormElement.h"
+#import "IGFormSection.h"
+#import "IGFormTextField.h"
+#import "IGFormTextView.h"
+#import "IGFormRadioOption.h"
+#import "IGFormSwitch.h"
+#import "IGFormButton.h"
 
 @interface IGFormViewController : UITableViewController <UIPopoverControllerDelegate, UITextFieldDelegate> {
 	UINavigationController *popoverNavigationController;

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IGFormViewController.h"
 
 @interface IGFormElement : NSObject {}
 @property(nonatomic, copy, readonly) NSString *title;

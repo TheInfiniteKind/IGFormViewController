@@ -8,6 +8,11 @@
 
 #import "IGFormElement.h"
 
+typedef enum _IGFormButtonType {
+    IGFormButtonTypeNormal,
+    IGFormButtonTypeDisclosure
+} IGFormButtonType;
+
 @interface IGFormButton : IGFormElement
 @property(nonatomic, strong) void(^action)(void);
 @property(nonatomic, strong) NSString *detailTitle;

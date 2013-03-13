@@ -7,13 +7,6 @@
 //
 
 #import "IGFormViewController.h"
-#import "IGFormElement.h"
-#import "IGFormSection.h"
-#import "IGFormTextField.h"
-#import "IGFormTextView.h"
-#import "IGFormRadioOption.h"
-#import "IGFormSwitch.h"
-#import "IGFormButton.h"
 
 @interface IGFormViewController ()
 
@@ -216,7 +209,7 @@
     [elements addObject:formSwitch];
 }
 
--(void)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action {
+-(void)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action; {
     [self addDefaultSectionIfNeeded];
     
     IGFormButton *button = [[IGFormButton alloc] initWithTitle:title
