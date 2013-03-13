@@ -22,6 +22,7 @@
 		4C573CC915B7429800790F60 /* IGFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C573CC115B7429800790F60 /* IGFormViewController.m */; };
 		4C573CCD15B7497500790F60 /* IGFormSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C573CCC15B7497500790F60 /* IGFormSwitch.m */; };
 		4C573CD315B7515C00790F60 /* IGFormButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C573CD215B7515B00790F60 /* IGFormButton.m */; };
+		5B2FCAB916F097F90045A5FE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B2FCAB816F097F90045A5FE /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		4C573CCC15B7497500790F60 /* IGFormSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGFormSwitch.m; path = IGFormViewController/IGFormSwitch.m; sourceTree = "<group>"; };
 		4C573CD115B7515A00790F60 /* IGFormButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGFormButton.h; path = IGFormViewController/IGFormButton.h; sourceTree = "<group>"; };
 		4C573CD215B7515B00790F60 /* IGFormButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGFormButton.m; path = IGFormViewController/IGFormButton.m; sourceTree = "<group>"; };
+		5B2FCAB816F097F90045A5FE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		4C573C7015B7411800790F60 = {
 			isa = PBXGroup;
 			children = (
+				5B2FCAB816F097F90045A5FE /* Default-568h@2x.png */,
 				4C573CB515B7428A00790F60 /* IGFormViewController */,
 				4C573C8515B7411800790F60 /* Example */,
 				4C573C7E15B7411800790F60 /* Frameworks */,
@@ -169,7 +172,7 @@
 		4C573C7215B7411800790F60 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 4C573C7515B7411800790F60 /* Build configuration list for PBXProject "Example" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C573C8A15B7411800790F60 /* InfoPlist.strings in Resources */,
+				5B2FCAB916F097F90045A5FE /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +242,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -263,6 +271,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
