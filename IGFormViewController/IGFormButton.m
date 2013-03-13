@@ -12,7 +12,7 @@
 @synthesize action;
 
 -(id)initWithTitle:(NSString *)aTitle action:(void(^)(void))anAction {
-    self = [super initWithTitle:aTitle];
+    self = [super initWithTitle:aTitle forKey:@""];
     if(self) {
         self.action = anAction;
     }

@@ -9,13 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "IGFormElement.h"
 
-@interface IGFormRadioOption : IGFormElement {
-	NSString *__weak category;
-	BOOL value;
-}
-@property(weak, nonatomic,readonly) NSString *category;
-@property(nonatomic) BOOL value;
-
--(id)initWithCategory:(NSString *)aCategory title:(NSString *)aTitle;
-
+@interface IGFormRadioOption : IGFormElement {}
+@property (nonatomic) BOOL selected;
+@property (nonatomic, copy, readonly) id value;
+-(id)initWithTitle:(NSString *)title value:(id <NSCopying>)value forKey:(NSString *)key;
 @end

@@ -9,11 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "IGFormViewController.h"
 
-@interface IGFormElement : NSObject {
-	NSString *title;
-}
-@property(nonatomic,readonly) NSString *title;
+@interface IGFormElement : NSObject {}
+@property(nonatomic, copy, readonly) NSString *title;
+@property(nonatomic, copy, readonly) NSString *key;
 
--(id)initWithTitle:(NSString *)aTitle;
-
+-(id)initWithTitle:(NSString *)title forKey:(NSString *)key;
 @end

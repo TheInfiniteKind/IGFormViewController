@@ -151,12 +151,12 @@
 }
 
 -(void)addSectionWithTitle:(NSString *)aTitle {
-	IGFormSection *section = [[IGFormSection alloc] initWithTitle:aTitle];
+	IGFormSection *section = [[IGFormSection alloc] initWithTitle:aTitle forKey:@""];
 	[elements addObject:section];
 }
 
 -(void)addSectionWithTitle:(NSString *)aTitle footer:(NSString *)footer {
-	IGFormSection *section = [[IGFormSection alloc] initWithTitle:aTitle];
+	IGFormSection *section = [[IGFormSection alloc] initWithTitle:aTitle forKey:@""];
     section.footer = footer;
 	[elements addObject:section];
 }
@@ -164,28 +164,24 @@
 #pragma mark -
 #pragma mark Adding text inputs
 
--(void)addTextField:(NSString *)fieldName {
+-(void)addTextFieldWithTitle:(NSString *)title forKey:(NSString *)key placeholder:(NSString *)placeholder {
+    
 	[self addDefaultSectionIfNeeded];
 	
-	IGFormTextField *textField = [[IGFormTextField alloc] initWithTitle:fieldName];
+	IGFormTextField *textField = [[IGFormTextField alloc] initWithTitle:title forKey:key];
 	textField.textField.delegate = self;
 	
 	[elements addObject:textField];
-}
-
--(void)addTextField:(NSString *)fieldName value:(NSString *)value {
-	[self addTextField:fieldName];
 	
-	IGFormTextField *textField = [elements lastObject];
-	textField.textField.text = value;	
+	textField.textField.placeholder = placeholder;
 }
 
--(void)addTextView:(NSString *)fieldName value:(NSString *)value {
+-(void)addTextViewWithTitle:(NSString *)title forKey:(NSString *)key value:(NSString *)value {
 	if(![[elements lastObject] isKindOfClass:[IGFormSection class]]) {
-		[self addSectionWithTitle:fieldName];
+		[self addSectionWithTitle:title];
 	}
 	
-	IGFormTextView *textView = [[IGFormTextView alloc] initWithTitle:fieldName];
+	IGFormTextView *textView = [[IGFormTextView alloc] initWithTitle:title forKey:key];
 	textView.textView.text = value;
 	[elements addObject:textView];
 }
@@ -193,22 +189,20 @@
 #pragma mark -
 #pragma mark Adding other form elements
 
--(void)addRadioOption:(NSString *)category title:(NSString *)title {
+-(void)addRadioOptionWithTitle:(NSString *)title value:(id <NSCopying>)value key:(NSString *)key selected:(BOOL)selected {
 	[self addDefaultSectionIfNeeded];
 	
-	IGFormRadioOption *radioOption = [[IGFormRadioOption alloc] initWithCategory:category title:title];
+	IGFormRadioOption *radioOption = [[IGFormRadioOption alloc] initWithTitle:title value:value forKey:key];
+    [radioOption setSelected:selected];
+    
 	[elements addObject:radioOption];
 }
 
--(void)addSwitch:(NSString *)title enabled:(BOOL)enabled {
+-(void)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled {
     [self addDefaultSectionIfNeeded];
     
-    IGFormSwitch *formSwitch = [[IGFormSwitch alloc] initWithTitle:title enabled:enabled];
+    IGFormSwitch *formSwitch = [[IGFormSwitch alloc] initWithTitle:title forKey:key enabled:enabled];
     [elements addObject:formSwitch];
-}
-
--(void)addButton:(NSString *)title action:(void (^)(void))action {
-    [self addButton:title type:IGFormButtonTypeNormal action:action];
 }
 
 -(void)addButton:(NSString *)title type:(IGFormButtonType)type action:(void (^)(void))action {
@@ -256,22 +250,22 @@
 			IGFormTextField *textField = (IGFormTextField *)element;
 			
 			NSString *value = (textField.textField.text ? textField.textField.text : @""); // replace nil with @""
-			[formData setObject:value forKey:textField.title];
+			[formData setObject:value forKey:textField.key];
 		} else if([element isKindOfClass:[IGFormRadioOption class]]) {
 			IGFormRadioOption *radioOption = (IGFormRadioOption *)element;
 			
 			if(radioOption.value) {
-				[formData setObject:radioOption.title forKey:radioOption.category];
+				[formData setObject:radioOption.value forKey:radioOption.key];
 			}
 		} else if([element isKindOfClass:[IGFormTextView class]]) {
 			IGFormTextView *textView = (IGFormTextView *)element;
 			
 			NSString *value = (textView.textView.text ? textView.textView.text : @""); // replace nil with @""
-			[formData setObject:value forKey:textView.title];
+			[formData setObject:value forKey:textView.key];
 		} else if([element isKindOfClass:[IGFormSwitch class]]) {
             IGFormSwitch *formSwitch = (IGFormSwitch *)element;
             
-            [formData setObject:[NSNumber numberWithBool:formSwitch.switchControl.on] forKey:formSwitch.title];
+            [formData setObject:[NSNumber numberWithBool:formSwitch.switchControl.on] forKey:formSwitch.key];
         }
 	}
 	
@@ -412,8 +406,10 @@
 	} else if([e isKindOfClass:[IGFormRadioOption class]]) {
 		IGFormRadioOption *radioOption = (IGFormRadioOption *)e;
 		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-        if(radioOption.value)
+        if(radioOption.selected)
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        else
+            cell.accessoryType = UITableViewCellAccessoryNone;
 		cell.textLabel.text = [radioOption title];
         
 	} else if([e isKindOfClass:[IGFormTextView class]]) {
@@ -457,12 +453,12 @@
 
 		// deselect all in that category
 		for(NSObject *element in elements) {
-			if([element isKindOfClass:[IGFormRadioOption class]] && [[(IGFormRadioOption *)element category] isEqualToString:radioOption.category])
-				[(IGFormRadioOption *)element setValue:NO];
+			if([element isKindOfClass:[IGFormRadioOption class]] && [[(IGFormRadioOption *)element key] isEqualToString:radioOption.key])
+				[(IGFormRadioOption *)element setSelected:NO];
 		}
 		
 		// select only that one
-		[radioOption setValue:YES];
+		[radioOption setSelected:YES];
 		
 		// show and animate changes
 		[self.tableView reloadData];

@@ -8,18 +8,22 @@
 
 #import "IGFormElement.h"
 
+@interface IGFormElement ()
+@property(nonatomic, copy, readwrite) NSString *title;
+@property(nonatomic, copy, readwrite) NSString *key;
+@end
 
 @implementation IGFormElement
-@synthesize title;
 
--(id)initWithTitle:(NSString *)aTitle {
+-(id)initWithTitle:(NSString *)title forKey:(NSString *)key {
+    NSParameterAssert(key != nil);
+    
 	if((self = [super init])) {
-		title = [aTitle copy];
+		self.title = title;
+        self.key = key;
 	}
 	return self;
 }
-
-
 
 -(UIResponder *)control {return nil;}
 -(void)setControl:(UIResponder *)newControl {}

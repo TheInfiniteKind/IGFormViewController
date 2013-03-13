@@ -11,5 +11,4 @@
 
 @interface IGFormSection : IGFormElement
 @property(nonatomic, strong) NSString *footer;
-
 @end

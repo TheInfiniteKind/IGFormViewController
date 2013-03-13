@@ -8,16 +8,19 @@
 
 #import "IGFormRadioOption.h"
 
+@interface IGFormRadioOption ()
+@property (nonatomic, copy, readwrite) id value;
+@end
 
 @implementation IGFormRadioOption
-@synthesize category, value;
-
--(id)initWithCategory:(NSString *)aCategory title:(NSString *)aTitle {
-	if((self = [super initWithTitle:aTitle])) {
-		category = aCategory;
-	}
-	return self;
+-(id)initWithTitle:(NSString *)title value:(id <NSCopying>)value forKey:(NSString *)key {
+    
+    self = [super initWithTitle:title forKey:key];
+    if (self) {
+        self.value = value;
+    }
+    return self;
+    
 }
-
 
 @end

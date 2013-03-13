@@ -12,8 +12,8 @@
 @implementation IGFormTextView
 @synthesize textView;
 
--(id)initWithTitle:(NSString *)aTitle {
-	if((self = [super initWithTitle:aTitle])) {
+-(id)initWithTitle:(NSString *)aTitle forKey:(NSString *)key {
+	if((self = [super initWithTitle:aTitle forKey:key])) {
 		textView = [[UITextView alloc] initWithFrame:CGRectZero];
 		textView.opaque = NO;
 		textView.backgroundColor = [UIColor clearColor];

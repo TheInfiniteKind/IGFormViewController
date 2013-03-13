@@ -11,6 +11,6 @@
 @interface IGFormSwitch : IGFormElement
 @property(nonatomic, strong) UISwitch *switchControl;
 
--(id)initWithTitle:(NSString *)aTitle enabled:(BOOL)enabled;
+-(id)initWithTitle:(NSString *)aTitle forKey:(NSString *)key enabled:(BOOL)enabled;
 
 @end

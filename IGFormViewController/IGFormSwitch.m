@@ -11,8 +11,8 @@
 @implementation IGFormSwitch
 @synthesize switchControl;
 
--(id)initWithTitle:(NSString *)aTitle enabled:(BOOL)enabled {
-    self = [super initWithTitle:aTitle];
+-(id)initWithTitle:(NSString *)aTitle forKey:(NSString *)key enabled:(BOOL)enabled {
+    self = [super initWithTitle:aTitle forKey:key];
     if(self) {
         self.switchControl = [[UISwitch alloc] initWithFrame:CGRectZero];
         self.switchControl.on = enabled;

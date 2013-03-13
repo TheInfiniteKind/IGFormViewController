@@ -12,11 +12,11 @@
 @implementation IGFormTextField
 @synthesize textField;
 
--(id)initWithTitle:(NSString *)aTitle {
-	if((self = [super initWithTitle:aTitle])) {
+-(id)initWithTitle:(NSString *)aTitle forKey:(NSString *)key {
+	if((self = [super initWithTitle:aTitle forKey:key])) {
 		textField = [[UITextField alloc] initWithFrame:CGRectZero];
 		textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-		textField.placeholder = aTitle;
+		textField.text = aTitle;
 	}
 	return self;
 }
