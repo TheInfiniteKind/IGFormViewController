@@ -15,8 +15,14 @@
     [self addSwitch:@"Toggle switch" forKey:@"toggle_switch" enabled:YES];
 
     [self addSectionWithTitle:@"Buttons" footer:@"The first button does nothing"];
-    [self addButton:@"This does nothing" type:IGFormButtonTypeDisclosure action:nil];
-    [self addButton:@"Do something" type:IGFormButtonTypeNormal action:^{
+    [self addButton:@"This does nothing"
+        detailTitle:nil
+               type:IGFormButtonTypeDisclosure
+             action:nil];
+    [self addButton:@"Do something"
+        detailTitle:nil
+               type:IGFormButtonTypeNormal
+             action:^{
        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hello!" 
                                                        message:@"You pressed a button."
                                                       delegate:nil 
@@ -38,7 +44,10 @@
     [self addSectionWithTitle:nil footer:nil];
     
     __weak ViewController *weakSelf = self;
-    [self addButton:@"Log Data" type:IGFormButtonTypeNormal action:^{
+    [self addButton:@"Log Data"
+        detailTitle:@"To Console"
+               type:IGFormButtonTypeNormal
+             action:^{
         NSDictionary *formData = [weakSelf formData];
         NSLog(@"formData: %@", formData);        
     }];

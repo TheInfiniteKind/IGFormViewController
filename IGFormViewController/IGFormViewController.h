@@ -51,6 +51,6 @@ typedef enum _IGFormButtonType {
 -(void)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled;
 
 // Adds a button that executes the given block when pressed
--(void)addButton:(NSString *)title type:(IGFormButtonType)type action:(void(^)(void))action;
+-(void)addButton:(NSString *)title detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action;
 
 @end

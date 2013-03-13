@@ -11,10 +11,11 @@
 @implementation IGFormButton
 @synthesize action;
 
--(id)initWithTitle:(NSString *)aTitle action:(void(^)(void))anAction {
+-(id)initWithTitle:(NSString *)aTitle detailTitle:(NSString*)aDetailTitle action:(void(^)(void))anAction {
     self = [super initWithTitle:aTitle forKey:@""];
     if(self) {
         self.action = anAction;
+		self.detailTitle = aDetailTitle;
     }
     return self;
 }

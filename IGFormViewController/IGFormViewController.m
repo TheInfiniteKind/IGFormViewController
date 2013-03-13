@@ -205,10 +205,11 @@
     [elements addObject:formSwitch];
 }
 
--(void)addButton:(NSString *)title type:(IGFormButtonType)type action:(void (^)(void))action {
+-(void)addButton:(NSString *)title detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action {
     [self addDefaultSectionIfNeeded];
     
-    IGFormButton *button = [[IGFormButton alloc] initWithTitle:title 
+    IGFormButton *button = [[IGFormButton alloc] initWithTitle:title
+                                                   detailTitle:detailTitle
                                                         action:action];
     button.type = type;
     [elements addObject:button];
@@ -380,11 +381,21 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *DefaultCellIdentifier = @"Default";
+    static NSString *Value1CellIdentifier = @"Value1";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+	// find the appropriate element
+	NSObject *e = [self elementAtIndexPath:indexPath];
+    
+    UITableViewCell *cell;
+    if([e isKindOfClass:[IGFormButton class]] && ((IGFormButton *)e).detailTitle) {
+        cell = [tableView dequeueReusableCellWithIdentifier:Value1CellIdentifier];
+        if(!cell)
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Value1CellIdentifier];
+    } else {
+        cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+        if(!cell)
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier];
     }
     
     // set default cell attributes to be overriden based on the element below
@@ -392,10 +403,7 @@
     cell.textLabel.text = @"";
     cell.textLabel.textAlignment = UITextAlignmentLeft;
     cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.accessoryView = nil;
-    
-	// find the appropriate element
-	NSObject *e = [self elementAtIndexPath:indexPath];
+    cell.accessoryView = nil;    
 	
 	if([e isKindOfClass:[IGFormTextField class]]) {
 		IGFormTextField *textField = (IGFormTextField *)e;
@@ -426,6 +434,7 @@
         IGFormButton *formButton = (IGFormButton *)e;
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.textLabel.text = formButton.title;
+        cell.detailTextLabel.text = formButton.detailTitle;
         if(formButton.type == IGFormButtonTypeDisclosure)
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         else
