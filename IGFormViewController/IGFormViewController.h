@@ -41,21 +41,21 @@
 -(void)saveData:(NSDictionary *)formData;
 
 // Creates a new section in the form with the given title and footer
--(void)addSectionWithTitle:(NSString *)title footer:(NSString *)footer;
+-(IGFormSection *)addSectionWithTitle:(NSString *)title footer:(NSString *)footer;
 
 // Single line text field with placeholder & default value
--(void)addTextFieldWithTitle:(NSString *)title forKey:(NSString *)key placeholder:(NSString *)placeholder;
+-(IGFormTextField *)addTextFieldWithTitle:(NSString *)title forKey:(NSString *)key placeholder:(NSString *)placeholder;
 
 // Multi-line text entry
--(void)addTextViewWithTitle:(NSString *)fieldName forKey:(NSString *)key value:(NSString *)value;
+-(IGFormTextView *)addTextViewWithTitle:(NSString *)fieldName forKey:(NSString *)key value:(NSString *)value;
 
 // Adds a radio option (a row with a checkbox to the right). Call this multiple times with the same key for each set of options.
--(void)addRadioOptionWithTitle:(NSString *)title value:(id <NSCopying>)value key:(NSString *)key selected:(BOOL)selected;
+-(IGFormRadioOption *)addRadioOptionWithTitle:(NSString *)title value:(id <NSCopying>)value key:(NSString *)key selected:(BOOL)selected;
 
 // Adds a toggle switch and sets the default value
--(void)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled;
+-(IGFormSwitch *)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled;
 
 // Adds a button that executes the given block when pressed
--(void)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action;
+-(IGFormButton *)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action;
 
 @end

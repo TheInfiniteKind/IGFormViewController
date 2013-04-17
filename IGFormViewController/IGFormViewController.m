@@ -128,26 +128,29 @@
 #pragma mark -
 #pragma mark Sections
 
--(void)addDefaultSectionIfNeeded {
+-(IGFormSection *)addDefaultSectionIfNeeded {
 	if([elements count]==0)
-		[self addSectionWithTitle:nil];
+		return [self addSectionWithTitle:nil];
+    return nil;
 }
 
--(void)addSectionWithTitle:(NSString *)aTitle {
+-(IGFormSection *)addSectionWithTitle:(NSString *)aTitle {
 	IGFormSection *section = [[IGFormSection alloc] initWithTitle:aTitle forKey:@""];
 	[elements addObject:section];
+    return section;
 }
 
--(void)addSectionWithTitle:(NSString *)aTitle footer:(NSString *)footer {
+-(IGFormSection *)addSectionWithTitle:(NSString *)aTitle footer:(NSString *)footer {
 	IGFormSection *section = [[IGFormSection alloc] initWithTitle:aTitle forKey:@""];
     section.footer = footer;
 	[elements addObject:section];
+    return section;
 }
 
 #pragma mark -
 #pragma mark Adding text inputs
 
--(void)addTextFieldWithTitle:(NSString *)title forKey:(NSString *)key placeholder:(NSString *)placeholder {
+-(IGFormTextField *)addTextFieldWithTitle:(NSString *)title forKey:(NSString *)key placeholder:(NSString *)placeholder {
     
 	[self addDefaultSectionIfNeeded];
 	
@@ -157,9 +160,11 @@
 	[elements addObject:textField];
 	
 	textField.textField.placeholder = placeholder;
+    
+    return textField;
 }
 
--(void)addTextViewWithTitle:(NSString *)title forKey:(NSString *)key value:(NSString *)value {
+-(IGFormTextView *)addTextViewWithTitle:(NSString *)title forKey:(NSString *)key value:(NSString *)value {
 	if(![[elements lastObject] isKindOfClass:[IGFormSection class]]) {
 		[self addSectionWithTitle:title];
 	}
@@ -167,28 +172,34 @@
 	IGFormTextView *textView = [[IGFormTextView alloc] initWithTitle:title forKey:key];
 	textView.textView.text = value;
 	[elements addObject:textView];
+    
+    return textView;
 }
 
 #pragma mark -
 #pragma mark Adding other form elements
 
--(void)addRadioOptionWithTitle:(NSString *)title value:(id <NSCopying>)value key:(NSString *)key selected:(BOOL)selected {
+-(IGFormRadioOption *)addRadioOptionWithTitle:(NSString *)title value:(id <NSCopying>)value key:(NSString *)key selected:(BOOL)selected {
 	[self addDefaultSectionIfNeeded];
 	
 	IGFormRadioOption *radioOption = [[IGFormRadioOption alloc] initWithTitle:title value:value forKey:key];
     [radioOption setSelected:selected];
     
 	[elements addObject:radioOption];
+    
+    return radioOption;
 }
 
--(void)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled {
+-(IGFormSwitch *)addSwitch:(NSString *)title forKey:(NSString *)key enabled:(BOOL)enabled {
     [self addDefaultSectionIfNeeded];
     
     IGFormSwitch *formSwitch = [[IGFormSwitch alloc] initWithTitle:title forKey:key enabled:enabled];
     [elements addObject:formSwitch];
+    
+    return formSwitch;
 }
 
--(void)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action; {
+-(IGFormButton *)addButton:(NSString *)title forKey:(NSString *)key detailTitle:(NSString *)detailTitle type:(IGFormButtonType)type action:(void (^)(void))action; {
     [self addDefaultSectionIfNeeded];
     
     IGFormButton *button = [[IGFormButton alloc] initWithTitle:title
@@ -197,6 +208,8 @@
                                                         action:action];
     button.type = type;
     [elements addObject:button];
+    
+    return button;
 }
 
 #pragma mark -
