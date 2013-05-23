@@ -19,6 +19,8 @@
 
 @end
 
+NSString * const IGFormViewDefaultCellIdentifier = @"IGFormViewDefaultCellIdentifier";
+NSString * const IGFormViewValue1CellIdentifier = @"IGFormViewValue1CellIdentifier";
 
 @implementation IGFormViewController
 
@@ -378,21 +380,18 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *DefaultCellIdentifier = @"Default";
-    static NSString *Value1CellIdentifier = @"Value1";
-    
 	// find the appropriate element
 	NSObject *e = [self elementAtIndexPath:indexPath];
     
     UITableViewCell *cell;
     if([e isKindOfClass:[IGFormButton class]] && ((IGFormButton *)e).detailTitle) {
-        cell = [tableView dequeueReusableCellWithIdentifier:Value1CellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:IGFormViewValue1CellIdentifier];
         if(!cell)
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:Value1CellIdentifier];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:IGFormViewValue1CellIdentifier];
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:DefaultCellIdentifier];
+        cell = [tableView dequeueReusableCellWithIdentifier:IGFormViewDefaultCellIdentifier];
         if(!cell)
-			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:DefaultCellIdentifier];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IGFormViewDefaultCellIdentifier];
     }
     
     // set default cell attributes to be overriden based on the element below

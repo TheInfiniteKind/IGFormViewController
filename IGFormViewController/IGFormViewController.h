@@ -15,6 +15,9 @@
 #import "IGFormSwitch.h"
 #import "IGFormButton.h"
 
+extern NSString * const IGFormViewDefaultCellIdentifier;
+extern NSString * const IGFormViewValue1CellIdentifier;
+
 @interface IGFormViewController : UITableViewController <UIPopoverControllerDelegate, UITextFieldDelegate> {
 	UINavigationController *popoverNavigationController;
 	NSMutableArray *elements;
