@@ -36,6 +36,9 @@ extern NSString * const IGFormViewValue1CellIdentifier;
 // return elements matching key
 - (NSArray *)elementsForKey:(NSString *)key;
 
+// return the element at the given index path
+-(IGFormElement *)elementAtIndexPath:(NSIndexPath *)indexPath;
+
 // Subclasses should override this method to determine whether the data is valid.
 // If valid, return nil. If not, return an error message.
 -(NSString *)validateData:(NSDictionary *)formData;

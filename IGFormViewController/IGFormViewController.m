@@ -15,7 +15,6 @@
 -(NSDictionary *)formData;
 -(void)saveAndExit;
 -(void)saveButtonPressed;
--(IGFormElement *)elementAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -48,7 +47,7 @@ NSString * const IGFormViewValue1CellIdentifier = @"IGFormViewValue1CellIdentifi
 	// if this is taller than possible (e.g. landscape with keyboard), the popover will do its own scrolling, which is badly broken
 	NSInteger minHeight = ([self tableViewHeight]<282 ? [self tableViewHeight] : 282);
 	
-    self.contentSizeForViewInPopover = CGSizeMake(320, minHeight);		
+    self.preferredContentSize = CGSizeMake(320, minHeight);
 		
     if([self.navigationController.viewControllers objectAtIndex:0]==self) {
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
