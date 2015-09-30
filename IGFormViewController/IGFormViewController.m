@@ -274,16 +274,11 @@ NSString * const IGFormViewValue1CellIdentifier = @"IGFormViewValue1CellIdentifi
 }
 
 -(void)saveAndExit {
-	[self saveData:[self formData]];
-	
-	// IGPopoverController might not exist (iPhone-only project), so check if it does first
-	Class popoverControllerClass = NSClassFromString(@"IGPopoverController");
-	if(popoverControllerClass && popoverNavigationController) {
-		[[popoverControllerClass performSelector:@selector(currentPopoverController)] dismissPopoverAnimated:YES];
-	} else {
-        if(![self.navigationController popViewControllerAnimated:YES])
-            [self dismissViewControllerAnimated:YES completion:NULL];
-	}
+    [self saveData:[self formData]];
+    
+    if(![self.navigationController popViewControllerAnimated:YES]) {
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
 }
 
 -(void)saveButtonPressed {
